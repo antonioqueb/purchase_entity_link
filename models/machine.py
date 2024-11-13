@@ -1,3 +1,4 @@
+# models/machine.py
 from odoo import models, fields
 
 class Machine(models.Model):

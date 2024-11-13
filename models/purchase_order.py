@@ -17,7 +17,7 @@ class PurchaseOrder(models.Model):
     user_id = fields.Many2one(
         'res.users', 
         string='Usuario', 
-        domain="[('active', '=', True)]"  # Mostrar todos los usuarios activos
+        domain="[('groups_id', 'in', [ref('base.group_user')])]"  # Mostrar solo usuarios internos
     )
     event_id = fields.Many2one('calendar.event', string='Evento')
     project_id = fields.Many2one('project.project', string='Proyecto')

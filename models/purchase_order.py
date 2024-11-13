@@ -12,7 +12,7 @@ class PurchaseOrder(models.Model):
         ('project', 'Proyecto'),
         ('task', 'Tarea'),
         ('fleet', 'Flota'),
-    ], string='Tipo de Entidad')
+    ], string='Tipo de Entidad', default='machine')
 
     machine_id = fields.Many2one('machine.machine', string='Máquina')
     user_id = fields.Many2one('res.users', string='Usuario')

@@ -14,7 +14,11 @@ class PurchaseOrder(models.Model):
     ], string='Tipo de Entidad', default='machine')
 
     machine_id = fields.Many2one('machine.machine', string='Máquina')
-    user_id = fields.Many2one('res.users', string='Usuario')
+    user_id = fields.Many2one(
+        'res.users', 
+        string='Usuario', 
+        domain="[('active', '=', True)]"  # Mostrar todos los usuarios activos
+    )
     event_id = fields.Many2one('calendar.event', string='Evento')
     project_id = fields.Many2one('project.project', string='Proyecto')
     task_id = fields.Many2one('project.task', string='Tarea')

@@ -14,11 +14,7 @@ class PurchaseOrder(models.Model):
     ], string='Tipo de Entidad', default='machine')
 
     machine_id = fields.Many2one('machine.machine', string='Máquina')
-    user_id = fields.Many2one(
-        'res.users', 
-        string='Usuario', 
-        domain="[('groups_id', 'in', [ref('base.group_user')])]"  # Mostrar solo usuarios internos
-    )
+    user_id = fields.Many2one('res.partner', string='Usuario')  # Cambiado a res.partner
     event_id = fields.Many2one('calendar.event', string='Evento')
     project_id = fields.Many2one('project.project', string='Proyecto')
     task_id = fields.Many2one('project.task', string='Tarea')
@@ -47,7 +43,6 @@ class PurchaseOrder(models.Model):
                 entity_label = dict(self._fields['entity_type'].selection).get(vals['entity_type'])
                 record.message_post(body=f"El tipo de entidad cambió a: {entity_label}")
 
-            # Registrar cambios en las vinculaciones según el tipo de entidad
             if 'machine_id' in vals and record.entity_type == 'machine':
                 machine_name = record.machine_id.name if record.machine_id else 'Sin Máquina asignada'
                 record.message_post(body=f"Máquina vinculada cambiada a: {machine_name}")

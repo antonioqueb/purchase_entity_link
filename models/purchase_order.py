@@ -14,7 +14,7 @@ class PurchaseOrder(models.Model):
     ], string='Tipo de Entidad', default='machine')
 
     machine_id = fields.Many2one('machine.machine', string='Máquina')
-    user_id = fields.Many2one('res.partner', string='Usuario')  # Cambiado a res.partner
+    contact_id = fields.Many2one('res.partner', string='Contacto')  # Nuevo campo
     event_id = fields.Many2one('calendar.event', string='Evento')
     project_id = fields.Many2one('project.project', string='Proyecto')
     task_id = fields.Many2one('project.task', string='Tarea')
@@ -25,8 +25,8 @@ class PurchaseOrder(models.Model):
         for record in self:
             if record.entity_type == 'machine' and not record.machine_id:
                 raise ValidationError('Debe seleccionar una Máquina.')
-            if record.entity_type == 'user' and not record.user_id:
-                raise ValidationError('Debe seleccionar un Usuario.')
+            if record.entity_type == 'user' and not record.contact_id:
+                raise ValidationError('Debe seleccionar un Contacto.')
             if record.entity_type == 'event' and not record.event_id:
                 raise ValidationError('Debe seleccionar un Evento.')
             if record.entity_type == 'project' and not record.project_id:
@@ -46,9 +46,9 @@ class PurchaseOrder(models.Model):
             if 'machine_id' in vals and record.entity_type == 'machine':
                 machine_name = record.machine_id.name if record.machine_id else 'Sin Máquina asignada'
                 record.message_post(body=f"Máquina vinculada cambiada a: {machine_name}")
-            if 'user_id' in vals and record.entity_type == 'user':
-                user_name = record.user_id.name if record.user_id else 'Sin Usuario asignado'
-                record.message_post(body=f"Usuario vinculado cambiado a: {user_name}")
+            if 'contact_id' in vals and record.entity_type == 'user':
+                contact_name = record.contact_id.name if record.contact_id else 'Sin Contacto asignado'
+                record.message_post(body=f"Contacto vinculado cambiado a: {contact_name}")
             if 'event_id' in vals and record.entity_type == 'event':
                 event_name = record.event_id.name if record.event_id else 'Sin Evento asignado'
                 record.message_post(body=f"Evento vinculado cambiado a: {event_name}")

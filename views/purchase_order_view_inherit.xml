@@ -6,8 +6,8 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook" position="before">
-                    <!-- Grupo para los campos de vinculación de entidad -->
+                <!-- Insertamos el grupo de Vinculación de Entidad después del grupo personalizado -->
+                <xpath expr="//field[@name='custom_area']" position="after">
                     <group string="Vinculación de Entidad">
                         <field name="entity_type"/>
                         <field name="machine_id" attrs="{'invisible': [('entity_type', '!=', 'machine')]}"/>
@@ -27,6 +27,7 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
             <field name="arch" type="xml">
+                <!-- Insertamos el campo entity_type después de custom_area -->
                 <xpath expr="//field[@name='custom_area']" position="after">
                     <field name="entity_type" widget="selection" readonly="1" optional="show"/>
                 </xpath>
@@ -39,6 +40,7 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
             <field name="arch" type="xml">
+                <!-- Insertamos el campo entity_type después de custom_area -->
                 <xpath expr="//field[@name='custom_area']" position="after">
                     <field name="entity_type" widget="selection" readonly="1" optional="show"/>
                 </xpath>

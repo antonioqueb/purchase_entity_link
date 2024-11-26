@@ -8,14 +8,14 @@
             <field name="arch" type="xml">
                 <!-- Insertamos el grupo de Vinculación de Entidad después del grupo que contiene custom_area -->
                 <xpath expr="//group[field[@name='custom_area']]" position="after">
-                    <group string="Vinculación de Entidad">
+                      <group string="Vinculación de Entidad">
                         <field name="entity_type"/>
-                        <field name="machine_id" modifiers="{'invisible': [('entity_type', '!=', 'machine')]}"/>
-                        <field name="contact_id" modifiers="{'invisible': [('entity_type', '!=', 'user')]}"/>
-                        <field name="event_id" modifiers="{'invisible': [('entity_type', '!=', 'event')]}"/>
-                        <field name="project_id" modifiers="{'invisible': [('entity_type', '!=', 'project')]}"/>
-                        <field name="task_id" modifiers="{'invisible': [('entity_type', '!=', 'task')]}"/>
-                        <field name="vehicle_id" modifiers="{'invisible': [('entity_type', '!=', 'fleet')]}"/>
+                        <field name="machine_id" invisible="entity_type != 'machine'"/>
+                        <field name="contact_id" invisible="entity_type != 'user'"/>
+                        <field name="event_id" invisible="entity_type != 'event'"/>
+                        <field name="project_id" invisible="entity_type != 'project'"/>
+                        <field name="task_id" invisible="entity_type != 'task'"/>
+                        <field name="vehicle_id" invisible="entity_type != 'fleet'"/>
                     </group>
                 </xpath>
             </field>

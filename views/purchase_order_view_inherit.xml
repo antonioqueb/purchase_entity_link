@@ -6,16 +6,16 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
-                <!-- Insertamos el grupo de Vinculación de Entidad después del grupo personalizado -->
+                <!-- Insertamos el grupo de Vinculación de Entidad después de custom_area -->
                 <xpath expr="//field[@name='custom_area']" position="after">
                     <group string="Vinculación de Entidad">
                         <field name="entity_type"/>
-                        <field name="machine_id" attrs="{'invisible': [('entity_type', '!=', 'machine')]}"/>
-                        <field name="contact_id" attrs="{'invisible': [('entity_type', '!=', 'user')]}"/>
-                        <field name="event_id" attrs="{'invisible': [('entity_type', '!=', 'event')]}"/>
-                        <field name="project_id" attrs="{'invisible': [('entity_type', '!=', 'project')]}"/>
-                        <field name="task_id" attrs="{'invisible': [('entity_type', '!=', 'task')]}"/>
-                        <field name="vehicle_id" attrs="{'invisible': [('entity_type', '!=', 'fleet')]}"/>
+                        <field name="machine_id" modifiers="{'invisible': [('entity_type', '!=', 'machine')]}"/>
+                        <field name="contact_id" modifiers="{'invisible': [('entity_type', '!=', 'user')]}"/>
+                        <field name="event_id" modifiers="{'invisible': [('entity_type', '!=', 'event')]}"/>
+                        <field name="project_id" modifiers="{'invisible': [('entity_type', '!=', 'project')]}"/>
+                        <field name="task_id" modifiers="{'invisible': [('entity_type', '!=', 'task')]}"/>
+                        <field name="vehicle_id" modifiers="{'invisible': [('entity_type', '!=', 'fleet')]}"/>
                     </group>
                 </xpath>
             </field>

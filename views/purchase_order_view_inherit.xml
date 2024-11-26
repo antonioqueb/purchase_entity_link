@@ -6,8 +6,8 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
-                <!-- Insertamos el grupo de Vinculación de Entidad después de custom_area -->
-                <xpath expr="//field[@name='custom_area']" position="after">
+                <!-- Insertamos el grupo de Vinculación de Entidad después del grupo que contiene custom_area -->
+                <xpath expr="//group[field[@name='custom_area']]" position="after">
                     <group string="Vinculación de Entidad">
                         <field name="entity_type"/>
                         <field name="machine_id" modifiers="{'invisible': [('entity_type', '!=', 'machine')]}"/>

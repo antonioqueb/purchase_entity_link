@@ -4,7 +4,7 @@
     'summary': 'Vincula órdenes de compra con diversas entidades',
     'author': 'ALPHAQUEB CONSULTING SAS',
     'category': 'Purchases',
-    'depends': ['purchase', 'fleet', 'project', 'maintenance', 'hr', 'calendar'],
+    'depends': ['purchase', 'fleet', 'project', 'maintenance', 'hr', 'calendar','custom_purchase_extension',],
     'data': [
         'security/ir.model.access.csv',
         'views/purchase_order_view_inherit.xml',

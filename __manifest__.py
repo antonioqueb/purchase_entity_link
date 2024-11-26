@@ -1,5 +1,3 @@
-# purchase_entity_link/__manifest__.py
-
 {
     'name': 'Purchase Entity Link',
     'version': '1.0',
@@ -9,6 +7,7 @@
     'depends': ['purchase', 'fleet', 'project', 'maintenance', 'hr', 'calendar'],
     'data': [
         'security/ir.model.access.csv',
+        'views/purchase_order_view_inherit.xml',
     ],
     'installable': True,
     'application': False,

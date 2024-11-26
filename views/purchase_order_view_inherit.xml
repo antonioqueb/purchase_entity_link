@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <!-- Heredar la vista de formulario de purchase.order -->
+        <record id="view_order_form_inherit_entity_link" model="ir.ui.view">
+            <field name="name">purchase.order.form.entity.link.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <!-- Grupo para los campos de vinculación de entidad -->
+                    <group string="Vinculación de Entidad">
+                        <field name="entity_type"/>
+                        <field name="machine_id" attrs="{'invisible': [('entity_type', '!=', 'machine')]}"/>
+                        <field name="contact_id" attrs="{'invisible': [('entity_type', '!=', 'user')]}"/>
+                        <field name="event_id" attrs="{'invisible': [('entity_type', '!=', 'event')]}"/>
+                        <field name="project_id" attrs="{'invisible': [('entity_type', '!=', 'project')]}"/>
+                        <field name="task_id" attrs="{'invisible': [('entity_type', '!=', 'task')]}"/>
+                        <field name="vehicle_id" attrs="{'invisible': [('entity_type', '!=', 'fleet')]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Heredar la vista de árbol de purchase.order -->
+        <record id="view_order_tree_inherit_entity_link" model="ir.ui.view">
+            <field name="name">purchase.order.tree.entity.link.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='custom_area']" position="after">
+                    <field name="entity_type" widget="selection" readonly="1" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Heredar la vista de árbol para cotizaciones (KPIs) -->
+        <record id="view_order_tree_kpis_inherit_entity_link" model="ir.ui.view">
+            <field name="name">purchase.order.kpis.tree.entity.link.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='custom_area']" position="after">
+                    <field name="entity_type" widget="selection" readonly="1" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
